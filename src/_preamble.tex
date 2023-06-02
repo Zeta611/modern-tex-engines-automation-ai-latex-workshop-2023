@@ -1,0 +1,128 @@
+\documentclass{beamer}
+
+\usepackage{kotex}
+
+%%% Math settings
+\usepackage{amssymb,amsmath} % Before unicode-math
+\usepackage[math-style=TeX,bold-style=TeX]{unicode-math}
+
+
+%%% Font settings
+\setmainfont{Libertinus Serif}
+\setsansfont{Libertinus Sans}[Scale=MatchLowercase]
+\setmonofont{JuliaMono}[Scale=MatchLowercase]
+
+\setmathfont{Libertinus Math} % Before set*hangulfont
+\setmathfont{TeX Gyre Pagella Math}[range={\lbrace,\rbrace},Scale=1.1]
+\setmathfont{TeX Gyre Pagella Math}[range={\mathbb,\mathfrak},Scale=MatchUppercase]
+\setmathfont{Asana Math}[range={\checkmark,\bigtriangledown,\cup,\sqcup,\cap,\sqcap,\subseteq,\supseteq,\sqsubseteq,\sqsupseteq,\subset,\supset,\sqsubset,\sqsupset,\in,\ni,\notin},Scale=MatchUppercase]
+
+\setmainhangulfont{Noto Serif CJK KR}
+\setsanshangulfont[BoldFont={* Bold}]{KoPubWorldDotum_Pro}
+\setmonohangulfont{D2Coding}
+
+% Get double angle brackets (\llangle and \rrangle)
+\makeatletter
+\DeclareFontFamily{OMX}{MnSymbolE}{}
+\DeclareSymbolFont{MnLargeSymbols}{OMX}{MnSymbolE}{m}{n}
+\SetSymbolFont{MnLargeSymbols}{bold}{OMX}{MnSymbolE}{b}{n}
+\DeclareFontShape{OMX}{MnSymbolE}{m}{n}{
+    <-6>  MnSymbolE5
+   <6-7>  MnSymbolE6
+   <7-8>  MnSymbolE7
+   <8-9>  MnSymbolE8
+   <9-10> MnSymbolE9
+  <10-12> MnSymbolE10
+  <12->   MnSymbolE12
+}{}
+\DeclareFontShape{OMX}{MnSymbolE}{b}{n}{
+    <-6>  MnSymbolE-Bold5
+   <6-7>  MnSymbolE-Bold6
+   <7-8>  MnSymbolE-Bold7
+   <8-9>  MnSymbolE-Bold8
+   <9-10> MnSymbolE-Bold9
+  <10-12> MnSymbolE-Bold10
+  <12->   MnSymbolE-Bold12
+}{}
+
+\let\llangle\@undefined
+\let\rrangle\@undefined
+\DeclareMathDelimiter{\llangle}{\mathopen}%
+                     {MnLargeSymbols}{'164}{MnLargeSymbols}{'164}
+\DeclareMathDelimiter{\rrangle}{\mathclose}%
+                     {MnLargeSymbols}{'171}{MnLargeSymbols}{'171}
+\makeatother
+
+\usepackage{newunicodechar}
+\newfontfamily{\fallbackfonta}{EB Garamond}
+\newfontfamily{\fallbackfontb}{JuliaMono}
+\DeclareTextFontCommand{\textfallbacka}{\fallbackfonta}
+\DeclareTextFontCommand{\textfallbackb}{\fallbackfontb}
+\newunicodechar{⩴}{\textfallbacka{⩴}}
+\newunicodechar{⚛}{\textfallbackb{⚛}}
+\newunicodechar{❤}{\textfallbacka{❤}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%
+%  Beamer Settings  %
+%%%%%%%%%%%%%%%%%%%%%
+\usetheme[numbering=fraction,progressbar=frametitle]{metropolis}
+\useoutertheme[subsection=false]{miniframes}
+\usecolortheme{rose}
+
+\setbeamertemplate{itemize item}[square]
+\setbeamertemplate{itemize subitem}[triangle]
+\setbeamertemplate{itemize subsubitem}[circle]
+
+\usepackage{metalogo} % For XeTeX logo
+\usepackage{kotex-logo}
+\usepackage{menukeys}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes, arrows, positioning}
+
+\usepackage{tabularray}
+
+\usepackage{minted}
+\definecolor{solarized-bg}{RGB}{253,246,227}
+\newminted{rs}{
+  style=solarized-light,
+  bgcolor=solarized-bg,
+  fontsize=\small,
+}
+\newminted{toml}{
+  style=solarized-light,
+  bgcolor=solarized-bg,
+  fontsize=\small,
+}
+\newminted{yaml}{
+  style=solarized-light,
+  bgcolor=solarized-bg,
+  fontsize=\tiny,
+}
+\newminted{json}{
+  style=solarized-light,
+  bgcolor=solarized-bg,
+  fontsize=\tiny,
+}
+\newminted{tex}{
+  style=solarized-light,
+  bgcolor=solarized-bg,
+  fontsize=\small,
+}
+
+\usepackage{simplebnf}[2022/05/08]
+\RenewDocumentCommand{\SimpleBNFDefEq}{}{\ensuremath{⩴}}
+
+% Custom commands
+\newcommand{\cemph}[1]{\textcolor{blue}{#1}}
+\newcommand{\cemphb}[1]{\textcolor{blue}{#1}}
+\newcommand{\cemphr}[1]{\textcolor{red}{#1}}
+
+\title{최신 컴퓨팅 환경의 \TeX: 엔진, 자동화, 인공지능}
+\subtitle{Tectonic + GitHub Actions + LLM}
+\author{이재호}
+\date{2023년 6월 3일}
+
+\begin{document}
